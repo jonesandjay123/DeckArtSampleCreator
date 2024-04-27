@@ -1,6 +1,6 @@
 import os
-import time
 import requests
+from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -32,7 +32,8 @@ def download_image(url, filename):
             file_extension = 'jpg'
 
         # 儲存文件
-        file_path = f"data/{filename}.{file_extension}"
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        file_path = f"data/{filename}_{timestamp}.{file_extension}"
         with open(file_path, 'wb') as f:
             f.write(response.content)
         return file_path

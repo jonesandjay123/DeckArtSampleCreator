@@ -23,7 +23,7 @@ Ensure you have Python 3.8 or newer installed on your machine. You can download 
 DeckArtSampleCreator uses several Python libraries. You can install all required libraries using `pip`. Run the following command in your terminal:
 
 ```bash
-pip install pandas python-dotenv openai Pillow requests
+pip install pandas python-dotenv openai Pillow requests tqdm
 ```
 
 ### Configuration

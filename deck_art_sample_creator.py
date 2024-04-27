@@ -1,5 +1,6 @@
 from excel_reader import load_data_from_excel
 from image_generator import download_image, setup_openai_client, generate_image
+from tqdm import tqdm
 
 def main():
     model = "dall-e-2"  # 預設模型
@@ -8,10 +9,10 @@ def main():
 
     client = setup_openai_client()
     data = load_data_from_excel('decks.xlsx')
-    test_data = data.iloc[0:1]  # Only process the first row for testing
+    data = data.iloc[0:3]  # Only process the first row for testing
 
-    for index, row in test_data.iterrows():
-        image_url = generate_image(client, row['English Prompt'], model="dall-e-2", delay=15)
+    for index, row in tqdm(data.iterrows(), total=data.shape[0], desc="Generating Images"):
+        image_url = generate_image(client, row['English Prompt'], model=model, size=size, quality=quality)
         if image_url:
             file_path = download_image(image_url, row['Label'])
             if file_path:
